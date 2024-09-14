@@ -12,6 +12,11 @@ import {
 import PersonIndex from "./persons/PersonIndex";
 import PersonDetail from "./persons/PersonDetail";
 import PersonForm from "./persons/PersonForm";
+import InvoiceIndex from "./invoices/InvoiceIndex";
+import InvoiceForm from "./invoices/InvoiceForm";
+import InvoiceDetail from "./invoices/InvoiceDetail";
+import StatisticsIndex from "./statistics/StatisticsIndex";
+
 
 export function App() {
   return (
@@ -20,9 +25,13 @@ export function App() {
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
-              <Link to={"/persons"} className="nav-link">
-                Osoby
-              </Link>
+              <Link className="nav-link" to={"/persons"} >Osoby</Link>
+            </li>
+            <li>
+              <Link className="nav-link" to={"/invoices"} >Faktury</Link>
+            </li>
+            <li>
+              <Link className="nav-link" to={"/statistics"} >Statistiky</Link>
             </li>
           </ul>
         </nav>
@@ -35,6 +44,20 @@ export function App() {
             <Route path="create" element={<PersonForm />} />
             <Route path="edit/:id" element={<PersonForm />} />
           </Route>
+        
+          <Route index element={<Navigate to={"/invoices"} />} />
+          <Route path="/invoices">
+            <Route index element={<InvoiceIndex />} />
+            <Route path="show/:id" element={<InvoiceDetail />} />
+            <Route path="create" element={<InvoiceForm />} />
+            <Route path="edit/:id" element={<InvoiceForm />} />
+          </Route>
+          <Route index element={<Navigate to={"/statistics"} />} />
+          <Route path="/statistics">
+            <Route index element={<StatisticsIndex />} />
+          
+          </Route>
+
         </Routes>
       </div>
     </Router>

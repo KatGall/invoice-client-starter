@@ -1,13 +1,9 @@
 import React from "react";
 
 export function InputSelect(props) {
-  const multiple = props.multiple;
-  const required = props.required || false;
+  const { multiple, required = false, value, items, prompt, handleChange, name } = props;
 
-  // příznak označení prázdné hodnoty
-  const emptySelected = multiple ? props.value?.length === 0 : !props.value;
-  // příznak objektové struktury položek
-  const objectItems = props.enum ? false : true;
+  const emptySelected = multiple ? value?.length === 0 : !value;
 
   return (
     <div className="form-group">
@@ -16,38 +12,27 @@ export function InputSelect(props) {
         required={required}
         className="browser-default form-select"
         multiple={multiple}
-        name={props.name}
-        onChange={props.handleChange}
-        value={props.value}
+        name={name}
+        onChange={handleChange}
+        value={value}
       >
         {required ? (
-          /* prázdná hodnota zakázaná (pro úpravu záznamu) */
-          <option disabled value={emptySelected}>
-            {props.prompt}
+          <option disabled value="">
+            {prompt}
           </option>
         ) : (
-          /* prázdná hodnota povolená (pro filtrování přehledu) */
-          <option key={0} value={emptySelected}>
-            ({props.prompt})
+          <option value="">
+            {prompt}
           </option>
         )}
 
-        {objectItems
-          ? /* vykreslení položek jako objektů z databáze (osobnosti) */
-            props.items.map((item, index) => (
-              <option key={required ? index : index + 1} value={item._id}>
-                {item.name}
-              </option>
-            ))
-          : /* vykreslení položek jako hodnot z výčtu (žánry) */
-            props.items.map((item, index) => (
-              <option key={required ? index : index + 1} value={item}>
-                {props.enum[item]}
-              </option>
-            ))}
+        {items.map((item) => (
+          <option key={item._id} value={item._id}>
+            {item.name}
+          </option>
+        ))}
       </select>
     </div>
   );
 }
-
 export default InputSelect;
