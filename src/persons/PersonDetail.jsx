@@ -123,11 +123,11 @@ const PersonDetail = () => {
                         {purchasesInvoices.length > 0 ? (
                             purchasesInvoices.map((invoice, index) => (
                                 <tr key={invoice.id || index}>
-                                     <td>{invoice.invoiceNumber}</td>
-                                   <td><Link to={`/persons/show/${invoice.seller._id}`} >
+                                    <td>{invoice.invoiceNumber}</td>
+                                    <td><Link to={`/persons/show/${invoice.seller._id}`} >
                                         {invoice.seller.name}
                                     </Link></td>
-                                     <td>{invoice.price} Kč</td>
+                                    <td>{invoice.price} Kč</td>
                                     <td>{invoice.product}</td>
                                 </tr>
                             ))

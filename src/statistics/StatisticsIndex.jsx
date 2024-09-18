@@ -4,14 +4,14 @@ import InvoiceStatistics from "./InvoiceStatistics";
 const StatisticsIndex = () => {
     const containerStyle = {
         display: "flex",
-        flexDirection: "row", // Zarovná statistiky vedle sebe
-        gap: "20px", // Mezera mezi komponentami
+        flexDirection: "row",
+        gap: "20px",
         padding: "10px",
-        justifyContent: "space-between" // Rozprostře je rovnoměrně po stránce
+        justifyContent: "space-between"
     };
 
     const sectionStyle = {
-        flex: 1, // Obě komponenty dostanou stejný prostor
+        flex: 1, // 
         padding: "20px",
         margin: "10px",
         border: "1px solid #ccc",

@@ -22,7 +22,6 @@ export function InputField(props) {
     <div className="form-group">
       <label>{props.label}:</label>
 
-      {/* vykreslení aktuálního elementu */}
       {isTextarea ? (
         <textarea
           required={required}

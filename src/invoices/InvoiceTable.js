@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import dateStringFormatter from "../utils/dateStringFormatter";
 
-const InvoiceTable = ({ label, items, deleteInvoice}) => {
+const InvoiceTable = ({ label, items, deleteInvoice }) => {
     return (
         <div>
             <p>
@@ -13,12 +14,13 @@ const InvoiceTable = ({ label, items, deleteInvoice}) => {
                     <tr>
                         <th>#</th>
                         <th>Číslo faktury</th>
-                        <th>Číslo dodavatele</th>
-                        <th>Číslo odběratele</th>
+                        <th>IČO dodavatele</th>
+                        <th>IČO  odběratele</th>
                         <th>Cena</th>
-                        <th>Product/Služba</th>
+                        <th>Produkt/Služba</th>
+                        <th>Datum vydání</th>
+                        <th>Datum splatnosti</th>
                         <th colSpan={3}>Akce</th>
-                  
                     </tr>
                 </thead>
                 <tbody>
@@ -28,8 +30,10 @@ const InvoiceTable = ({ label, items, deleteInvoice}) => {
                             <td>{item.invoiceNumber}</td>
                             <td>{item.seller.identificationNumber}</td>
                             <td>{item.buyer.identificationNumber}</td>
-                            <td>{item.price}</td>
+                            <td>{item.price}Kč</td>
                             <td>{item.product}</td>
+                            <td>{dateStringFormatter(item.issued, true)}</td>
+                            <td>{dateStringFormatter(item.dueDate, true)}</td>
                             <td>
                                 <div className="btn-group">
                                     <Link
